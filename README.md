@@ -2,6 +2,6 @@
 ## Usando vite
 
 Para correr el proyecto 
-<code >
+```
 npm run dev
-<code>
+```
