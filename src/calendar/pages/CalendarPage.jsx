@@ -1,11 +1,11 @@
-import { Calendar } from 'react-big-calendar'
-
-
 import { addHours} from 'date-fns'
-import 'react-big-calendar/lib/css/react-big-calendar.css';
+import { useState } from 'react';
+import { Calendar } from 'react-big-calendar';
 import { NavBar,CalendarEvent } from '../';
 import { localizer,messages } from '../../helpers';
-import { useState } from 'react';
+import { CalendarModal } from '../components/CalendarModal';
+
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 
 const events = [{
@@ -23,6 +23,7 @@ export const CalendarPage = () => {
 
   const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'day');
     const eventStyleGetter =( {event,start,end,isSelected})=>{    
+      
     const style = {
       backgroundColor:"#347CF7",
       borderRadius:"0px",
@@ -68,6 +69,7 @@ export const CalendarPage = () => {
           event:CalendarEvent
         }}
       />
+      <CalendarModal></CalendarModal>
     </>
   )
 }
