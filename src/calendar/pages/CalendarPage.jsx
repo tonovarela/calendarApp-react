@@ -1,8 +1,8 @@
-import { addHours} from 'date-fns'
+import { addHours } from 'date-fns'
 import { useState } from 'react';
 import { Calendar } from 'react-big-calendar';
-import { NavBar,CalendarEvent } from '../';
-import { localizer,messages } from '../../helpers';
+import { NavBar, CalendarEvent } from '../';
+import { localizer, messages } from '../../helpers';
 import { CalendarModal } from '../components/CalendarModal';
 
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -14,48 +14,42 @@ const events = [{
   start: new Date(),
   end: addHours(new Date(), 2),
   bgColor: "#fafafa",
-  user:{
-    _id:'123',
-    name:'Varela' 
+  user: {
+    _id: '123',
+    name: 'Varela'
   }
 }]
 export const CalendarPage = () => {
 
   const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'day');
-    const eventStyleGetter =( {event,start,end,isSelected})=>{    
-      
+  const eventStyleGetter = ({ event, start, end, isSelected }) => {
     const style = {
-      backgroundColor:"#347CF7",
-      borderRadius:"0px",
-      opacity:0.8,      
-      color:"white"
+      backgroundColor: "#347CF7",
+      borderRadius: "0px",
+      opacity: 0.8,
+      color: "white"
     }
     return {
       style
     }
   }
-
-  const onDoubleClick =(event) =>{
-    console.log({doubleClick:event});
+  const onDoubleClick = (event) => {
+    console.log({ doubleClick: event });
   }
-
-  const onSelect =(event) =>{
-    console.log({select:event});
+  const onSelect = (event) => {
+    console.log({ select: event });
   }
-
-  const onViewChanged =(event) =>{
-    localStorage.setItem('lastView',event);
+  const onViewChanged = (event) => {
+    localStorage.setItem('lastView', event);
     setLastView(event);
   }
-
   return (
     <>
       <NavBar></NavBar>
-
       <Calendar
-        culture='es'   
+        culture='es'
         defaultView={lastView}
-        eventPropGetter={eventStyleGetter}     
+        eventPropGetter={eventStyleGetter}
         messages={messages}
         localizer={localizer}
         events={events}
@@ -66,7 +60,7 @@ export const CalendarPage = () => {
         onSelectEvent={onSelect}
         onView={onViewChanged}
         components={{
-          event:CalendarEvent
+          event: CalendarEvent
         }}
       />
       <CalendarModal></CalendarModal>
