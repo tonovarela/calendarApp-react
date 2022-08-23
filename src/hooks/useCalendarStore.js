@@ -2,11 +2,13 @@
 import { localizer, messages } from '../helpers';
 import { addHours } from 'date-fns';
 import { useState } from 'react';
+import { useUiStore } from './useUiStore';
+
 
 export const useCalendarStore = () => {
-  
+  const {openDateModal } = useUiStore();
   const events = [{
-    title: "Cumple de varela",
+    title: "Cumple de varela---",
     notes: "Se tiene que comprar el pastel",
     start: new Date(),
     end: addHours(new Date(), 2),
@@ -31,7 +33,9 @@ export const useCalendarStore = () => {
     }
   }
   const onDoubleClick = (event) => {
-    console.log({ doubleClick: event });
+    openDateModal();
+    //onOpenDateModal();
+    //console.log({ doubleClick: event });
   }
   const onSelect = (event) => {
     console.log({ select: event });
