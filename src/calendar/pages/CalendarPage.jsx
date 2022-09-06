@@ -3,13 +3,42 @@ import { Calendar } from 'react-big-calendar';
 import { NavBar, CalendarEvent } from '../';
 import { CalendarModal } from '../components/CalendarModal';
 
+import {useCalendarStore, useUiStore } from '../../hooks';
+import { localizer, messages } from '../../helpers';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import { useCalendarStore } from '../../hooks/useCalendarStore';
+import { useState } from 'react';
+
 
 export const CalendarPage = () => {
 
-  const  { events,lastView,onDoubleClick,onSelect,onViewChanged,localizer,messages,eventStyleGetter}=useCalendarStore()
+  const { openDateModal } = useUiStore();  
   
+  const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'day');
+  const  {events,activeEvent,setActiveEvent} = useCalendarStore();
+  
+  const eventStyleGetter = ({ event, start, end, isSelected }) => {
+    const style = {
+      backgroundColor: "#347CF7",
+      borderRadius: "0px",
+      opacity: 0.8,
+      color: "white"
+    }
+    return {
+      style
+    }
+  }
+
+  const onDoubleClick = (event) => {
+    openDateModal();    
+  }
+  const onSelect = (event) => {    
+    setActiveEvent(event);    
+  }
+  const onViewChanged = (event) => {
+    localStorage.setItem('lastView', event);
+    setLastView(event);
+  }
+
   return (
     <>
       <NavBar></NavBar>
