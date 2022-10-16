@@ -65,10 +65,16 @@ export const useAuthStore = () => {
 
     }
 
+    const startLogout = ()=>{
+        localStorage.clear();
+        dispatch(onLogout(''));
+    }
+
     return {
         status,
         user,
         errorMessage,
+        startLogout,
         startLogin,
         startRegister,
         checkAuthToken

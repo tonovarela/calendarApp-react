@@ -34,7 +34,7 @@ export const LoginPage = () => {
             return;
         }
        startRegister({ email: registerEmail, password: registerPassword,name:registerName });
-        console.log({ registerName, registerEmail, registerPassword, registerPassword2 });
+     //   console.log({ registerName, registerEmail, registerPassword, registerPassword2 });
     }
 
     useEffect(() => {
