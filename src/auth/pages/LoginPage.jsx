@@ -23,8 +23,7 @@ export const LoginPage = () => {
 
 
     const loginSubmit = (event) => {
-        event.preventDefault();
-        console.log({ loginEmail, loginPassword });
+        event.preventDefault();    
         startLogin({ email: loginEmail, password: loginPassword });
     }
     const registerSubmit = (event) => {
