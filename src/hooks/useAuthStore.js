@@ -47,7 +47,9 @@ export const useAuthStore = () => {
     }
 
     const checkAuthToken = async () => {
+        
         const token = localStorage.getItem('token');
+        console.log(token);
         if (!token) {
             return dispatch(onLogout(''));
         }
